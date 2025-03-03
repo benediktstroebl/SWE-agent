@@ -406,6 +406,7 @@ class Main:
                 continue
         for hook in self.hooks:
             hook.on_end()
+        return self.traj_dir
 
     def _save_arguments(self) -> None:
         """Save the arguments to a yaml file to the run's trajectory directory."""
@@ -522,7 +523,7 @@ def get_args(args=None) -> ScriptArguments:
 
 
 def main(args: ScriptArguments):
-    Main(args).main()
+    return Main(args).main()
 
 
 
