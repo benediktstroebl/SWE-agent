@@ -45,11 +45,15 @@ def run(input: dict[str, dict], **kwargs) -> dict[str, str]:
     with open(traj_dir) as f:
         data = list(f)
     model_name_or_path = kwargs['model_name']
+    keys = list(input.keys())
 
-    for i, instance in enumerate(input):
+    for idx, key in enumerate(keys):
         for line in data:
             line = json.loads(line)
+            instance = input[key]
+            
             if instance['instance_id'] == line['instance_id']:
+                print("find matching instance!")
                 instance['model_name_or_path'] = line['model_name_or_path']
                 instance['model_patch'] = line['model_patch']
                 break
